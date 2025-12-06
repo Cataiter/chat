@@ -33,8 +33,8 @@ def save_message(user, content):
     
     new_message = {
         "user": user,
-        "content": content,
-        "timestamp": datetime.now().isoformat()
+        "msg": content,
+        "time": datetime.now().isoformat()
     }
     messages_ref.add(new_message)
     
@@ -106,6 +106,7 @@ st.text("Última actualización: " + datetime.now().strftime("%H:%M:%S"))
 time.sleep(1) 
 
 st.rerun()
+
 
 
 
