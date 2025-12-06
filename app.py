@@ -102,4 +102,5 @@ else:
 st.text("Última actualización: " + datetime.now().strftime("%H:%M:%S"))
 time.sleep(1) 
 
-st.experimental_rerun()
+st.rerun()
+
