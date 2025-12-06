@@ -63,8 +63,8 @@ else:
 chat_history = load_messages()
 
 # Mostrar los mensajes en orden
-for message in chat_history:
-    message.to_dict()
+for data in chat_history:
+    message=data.to_dict()
     # Usamos el formato nativo de chat de Streamlit
     role = "user" if message["user"] == st.session_state['username'] else "assistant"
     
@@ -103,5 +103,6 @@ st.text("Última actualización: " + datetime.now().strftime("%H:%M:%S"))
 time.sleep(1) 
 
 st.rerun()
+
 
 
