@@ -12,9 +12,9 @@ st.set_page_config(page_title="Sala de Chat para Amigos")
 
 
 # --- Inicializar Firebase ---
+firebase_cfg = dict(st.secrets["firebase"])
 if not firebase_admin._apps:
-    firebase_json = json.loads(st.secrets["firebase_key"])
-    cred = credentials.Certificate(firebase_json)
+    cred = credentials.Certificate(firebase_cfg)
     firebase_admin.initialize_app(cred)
 
 db = firestore.client()
@@ -101,4 +101,5 @@ else:
 # Si quieres desactivar la recarga automática, simplemente elimina las siguientes líneas.
 st.text("Última actualización: " + datetime.now().strftime("%H:%M:%S"))
 time.sleep(1) 
+
 st.experimental_rerun()
