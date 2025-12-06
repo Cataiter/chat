@@ -63,14 +63,17 @@ else:
 chat_history = load_messages()
 
 # Mostrar los mensajes en orden
-for data in chat_history:
-    message=data.to_dict()
-    # Usamos el formato nativo de chat de Streamlit
-    role = "user" if message["user"] == st.session_state['username'] else "assistant"
-    
-    with st.chat_message(role):
-        st.write(f"**{message['user']}**")
-        st.write(message["content"])
+query = messages_ref.order_by("time")
+results = query.stream()
+
+for msg in results:
+    data = msg.to_dict()
+    if "time" in data and data["time"]:
+        dt = data["time"].strftime("%H:%M:%S")
+    else:
+        dt = "..."
+
+    st.write(f"**{data['user']}** ({dt}): {data['msg']}")
 
 # --- Formulario de Entrada ---
 
@@ -103,6 +106,7 @@ st.text("Última actualización: " + datetime.now().strftime("%H:%M:%S"))
 time.sleep(1) 
 
 st.rerun()
+
 
 
 
