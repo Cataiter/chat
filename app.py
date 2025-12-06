@@ -36,7 +36,7 @@ def save_message(user, content):
         "content": content,
         "timestamp": datetime.now().isoformat()
     }
-    messages_ref.add.append(new_message)
+    messages_ref.add(new_message)
     
 
 # --- INTERFAZ DE STREAMLIT ---
@@ -103,4 +103,5 @@ st.text("Última actualización: " + datetime.now().strftime("%H:%M:%S"))
 time.sleep(1) 
 
 st.rerun()
+
 
